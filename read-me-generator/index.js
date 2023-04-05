@@ -70,17 +70,17 @@ const questions = [
 
 //writing README.md File
 function writeToFile(fileName, data){
-    return fs.writeFileSync(path.join(process.cwd(),filename),data);
+    return fs.writeFileSync(path.join(process.cwd(),fileName),data);
 }
 
 
 console.log("Answer the following questions to generate a README file:\n");
 //App initialization
 function init(){
-    inquirer.createPromptModule(questions,(response) =>{
-        console.log("creating README.md File...");
-        writeToFile("./public/README.md", generateMarkdown({...response}));
-    });    
+    inquirer.prompt(questions).then((responses) => {
+        console.log("Creating Professional README.md File...");
+        writeToFile("./public/README.md", generateMarkdown({ ...responses }));
+    });
 }
 
 init();
